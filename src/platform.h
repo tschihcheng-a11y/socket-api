@@ -8,7 +8,10 @@
     #include <ws2tcpip.h>
     #pragma comment(lib, "ws2_32.lib")
 
-    using ssize_t = int;
+    #ifndef _SSIZE_T_DEFINED
+        using ssize_t = int;
+        #define _SSIZE_T_DEFINED
+    #endif
 
     inline int socket_close(int fd) { return closesocket(fd); }
     inline int socket_errno()       { return WSAGetLastError(); }
